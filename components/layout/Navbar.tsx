@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import CustomImage from "../ui/CustomImage";
 import { ChevronDown, ChevronUp, LayoutGrid } from "lucide-react";
+import NavbarDropdown from "../Navbar/NavbarDropdown";
 
 interface NavbarProps {
 	open: { [key: string]: boolean };
@@ -9,7 +10,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ open, toggleOpen }: NavbarProps) {
-
+	const [activeItem, setActiveItem] = useState<string | null>(null);
 	return (
 		<div className="flex flex-wrap items-center justify-center ">
 			<div className="flex  justify-between w-350 mx-5 sm:mx-10 md:mx-25">
@@ -23,9 +24,16 @@ export default function Navbar({ open, toggleOpen }: NavbarProps) {
 				{/* Right Navigation */}
 				<div className="flex space-x-5 xl:space-x-10   xl:text-lg items-center tracking-wider">
 					{/* Products Section */}
-					<div onClick={() => toggleOpen("productsNavbar")} className=" items-center text-gray-400 hover:text-gray-900 hidden lg:flex">
+					<div
+						onClick={() => toggleOpen("productsNavbar")}
+						className=" items-center text-gray-400 hover:text-gray-900 hidden lg:flex"
+					>
 						<h1 className="cursor-default">Products</h1>
-            {open.productsNavbar ? <ChevronUp className="h-5" /> : <ChevronDown className="h-5" />}
+						{open.productsNavbar ? (
+							<ChevronUp className="h-5" />
+						) : (
+							<ChevronDown className="h-5" />
+						)}
 					</div>
 					{/* Learn More Section */}
 					<div className="relative group hidden lg:flex items-center  text-gray-400 group hover:text-gray-900 h-full  px-4  ">
@@ -61,17 +69,15 @@ export default function Navbar({ open, toggleOpen }: NavbarProps) {
 					</div>
 				</div>
 			</div>
+
+			{open.productsNavbar && (
+				<NavbarDropdown
+					activeItem={activeItem}
+					setActiveItem={setActiveItem}
+					toggleOpen={toggleOpen}
+				/>
+			)}
 			
-      {open.productsNavbar && <div className="bg-black w-full h-20">
-				<div className="flex justify-center">
-					<div className="flex justify-evenly w-350">
-						<div>segewg</div>
-						<div>segewg</div>
-						<div>segewg</div>
-						<div>segewg</div>
-					</div>
-				</div>
-			</div>}
 		</div>
 	);
 }
