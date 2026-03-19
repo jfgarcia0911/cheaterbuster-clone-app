@@ -7,10 +7,12 @@ import NavbarDropdown from "../Navbar/NavbarDropdown";
 interface NavbarProps {
 	open: { [key: string]: boolean };
 	toggleOpen: (section: string) => void;
+  activeItem: string | null;
+  setActiveItem: (item: string) => void;
 }
 
-export default function Navbar({ open, toggleOpen }: NavbarProps) {
-	const [activeItem, setActiveItem] = useState<string | null>(null);
+export default function Navbar({ open, toggleOpen,activeItem,setActiveItem }: NavbarProps) {
+	// const [activeItem, setActiveItem] = useState<string | null>(null);
 	return (
 		<div className="flex flex-wrap items-center justify-center ">
 			<div className="flex  justify-between w-350 mx-5 sm:mx-10 md:mx-25">
@@ -36,12 +38,12 @@ export default function Navbar({ open, toggleOpen }: NavbarProps) {
 						)}
 					</div>
 					{/* Learn More Section */}
-					<div className="relative group hidden lg:flex items-center  text-gray-400 group hover:text-gray-900 h-full  px-4  ">
+					<div className="relative group hidden lg:flex items-center  text-gray-400 group hover:text-gray-900 h-full  px-4 z-50 ">
 						<h1 className="cursor-default">Learn More</h1>
 						<ChevronDown className="h-5 block group-hover:hidden transition-transform duration-300" />
 						<ChevronUp className="h-5 hidden group-hover:block transition-transform duration-300" />
 
-						<div className="absolute top-15 left-0 bg-gray-300 w-50 p-4 rounded-xl text-sm space-y-3 hidden group-hover:block text-gray-400 ">
+						<div className="absolute top-15 left-0 bg-white w-50 p-4 rounded-xl text-sm space-y-3 hidden group-hover:block text-gray-400 ">
 							<h1 className="hover:text-gray-900 cursor-pointer">
 								How it Works
 							</h1>
