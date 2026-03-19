@@ -5,8 +5,6 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./app/**/*.{js,ts,jsx,tsx}", // if using Next.js 13+ with app router
   ],
-  theme: {
-    extend: {},
-  },
+  theme: { },
   plugins: [],
 }

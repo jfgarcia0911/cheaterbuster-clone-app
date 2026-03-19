@@ -35,6 +35,3 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-.marquee-container:hover .marquee-content {
-  animation-play-state: paused;
-}
