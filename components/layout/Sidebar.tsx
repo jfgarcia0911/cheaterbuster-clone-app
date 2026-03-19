@@ -5,19 +5,11 @@ import FireIcon from "@/components/icons/FireIcon";
 import ToolsIcon from "@/components/icons/ToolsIcon";
 
 interface SidebarProps {
-	openSidebar: boolean;
-	setOpenSidebar: (value: boolean) => void;
+	open: { [key: string]: boolean };
+	toggleOpen: (section: string) => void;
 }
 
-export default function Sidebar({ openSidebar, setOpenSidebar }: SidebarProps) {
-	const [expand, setExpand] = useState<{ [key: string]: boolean }>({
-		products: false,
-		learnMore: false,
-	});
-
-	const toggleExpand = (section: string) => {
-		setExpand((prev) => ({ ...prev, [section]: !prev[section] }));
-	};
+export default function Sidebar({ open, toggleOpen }: SidebarProps) {
 
 	return (
 		<div className="absolute top-0 right-0 w-95 h-screen py-6 px-4 bg-white">
@@ -25,22 +17,19 @@ export default function Sidebar({ openSidebar, setOpenSidebar }: SidebarProps) {
 				<h1 className="text-gray-400 text-xs tracking-widest font-semibold">
 					MENU
 				</h1>
-				<X
-					className="h-5 cursor-pointer"
-					onClick={() => setOpenSidebar(!openSidebar)}
-				/>
+				<X className="h-5 cursor-pointer" onClick={() => toggleOpen("menu")} />
 			</div>
 			<div className="mt-10">
 				<div className="space-y-4">
 					{/* Products */}
 					<div
-						onClick={() => toggleExpand("products")}
+						onClick={() => toggleOpen("productsSidebar")}
 						className="flex justify-between items-center border border-gray-100 hover:border-gray-300 px-4 py-2 rounded-xl"
 					>
 						<h1 className="text-sm font-semibold">Products</h1>
-						{expand.products ? <ChevronUp /> : <ChevronDown />}
+						{open.productsSidebar ? <ChevronUp /> : <ChevronDown />}
 					</div>
-					{expand.products && (
+					{open.productsSidebar && (
 						<div className="space-y-5 px-5">
 							<div className="flex items-center space-x-2 font-semibold text-red-500 cursor-pointer">
 								<EChartsIcon className="h-4 w-4 " />
@@ -63,13 +52,13 @@ export default function Sidebar({ openSidebar, setOpenSidebar }: SidebarProps) {
 
 					{/* Learn More */}
 					<div
-						onClick={() => toggleExpand("learnMore")}
+						onClick={() => toggleOpen("learnMoreSidebar")}
 						className="flex justify-between items-center border border-gray-100 hover:border-gray-300 px-4 py-2 rounded-xl"
 					>
 						<h1 className="text-sm font-semibold">Learn more</h1>
-						{expand.learnMore ? <ChevronUp /> : <ChevronDown />}
+						{open.learnMoreSidebar ? <ChevronUp /> : <ChevronDown />}
 					</div>
-					{expand.learnMore && (
+					{open.learnMoreSidebar && (
 						<div className="space-y-5 px-5 tracking-wider text-gray-500">
 							<h1>How It Works</h1>
 							<h1> FAQ</h1>
