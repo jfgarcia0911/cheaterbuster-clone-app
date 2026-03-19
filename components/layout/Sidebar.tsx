@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { X, ChevronUp, ChevronDown } from "lucide-react";
 import EChartsIcon from "@/components/icons/EchartsIcon";
 import FireIcon from "@/components/icons/FireIcon";
+import FaceIcon from "@/components/icons/FaceIcon";
 import ToolsIcon from "@/components/icons/ToolsIcon";
 
 interface SidebarProps {
@@ -40,7 +41,7 @@ export default function Sidebar({ open, toggleOpen }: SidebarProps) {
 								<h1>Following AI</h1>
 							</div>
 							<div className="flex items-center space-x-2 font-semibold text-blue-500 cursor-pointer">
-								<EChartsIcon className="h-4 w-4 " />
+								<FaceIcon className="h-4 w-4 " />
 								<h1>FaceTrace</h1>
 							</div>
 							<div className="flex items-center space-x-2 font-semibold text-gray-500 cursor-pointer">
