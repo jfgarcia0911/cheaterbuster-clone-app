@@ -1,4 +1,5 @@
 "use client";
+import Hero from "@/components/layout/Hero";
 import Navbar from "@/components/layout/Navbar";
 import Sidebar from "@/components/layout/Sidebar";
 import Marquee from "@/components/ui/Marquee";
@@ -13,8 +14,7 @@ export default function Home() {
 		learnMoreSidebar: false,
 		learnMore: false,
 	});
-    const [activeItem, setActiveItem] = useState<string | null>("appSearch");
-  
+	const [activeItem, setActiveItem] = useState<string | null>("appSearch");
 
 	useCloseProductsNavbar(1024, setOpen);
 
@@ -24,18 +24,23 @@ export default function Home() {
 
 	return (
 		<div className={`${open.menu && "overflow-y-hidden h-screen"} `}>
-			<Navbar open={open} toggleOpen={toggleOpen} activeItem={activeItem} setActiveItem={setActiveItem}  />
+			<Navbar
+				open={open}
+				toggleOpen={toggleOpen}
+				activeItem={activeItem}
+				setActiveItem={setActiveItem}
+			/>
 
-			{open.menu && <Sidebar open={open} toggleOpen={toggleOpen} setActiveItem={setActiveItem}/>}
+			{open.menu && (
+				<Sidebar
+					open={open}
+					toggleOpen={toggleOpen}
+					setActiveItem={setActiveItem}
+				/>
+			)}
 
-			
-
-
-
-
-    <Marquee  activeItem={activeItem}/>
-
-
+			{/* <Marquee activeItem={activeItem} /> */}
+      <Hero/>
 		</div>
 	);
 }
