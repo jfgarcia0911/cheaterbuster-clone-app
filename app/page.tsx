@@ -2,7 +2,6 @@
 import Hero from "@/components/layout/Hero";
 import Navbar from "@/components/layout/Navbar";
 import Sidebar from "@/components/layout/Sidebar";
-import Marquee from "@/components/ui/Marquee";
 import { useCloseProductsNavbar } from "@/hooks/useCloseProductsNavbar";
 import { useState } from "react";
 
@@ -39,7 +38,6 @@ export default function Home() {
 				/>
 			)}
 
-			{/* <Marquee activeItem={activeItem} /> */}
       <Hero/>
 		</div>
 	);
