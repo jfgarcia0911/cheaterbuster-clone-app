@@ -15,7 +15,7 @@ export default function Navbar({ open, toggleOpen,activeItem,setActiveItem }: Na
 	// const [activeItem, setActiveItem] = useState<string | null>(null);
 	return (
 		<div className="flex flex-wrap items-center justify-center ">
-			<div className="flex  justify-between w-350 mx-5 sm:mx-10 md:mx-25">
+			<div className="flex  justify-between w-350 mx-5 sm:mx-10 lg:mx-25">
 				{/* Logo */}
 				<div className="cursor-pointer">
 					<CustomImage
