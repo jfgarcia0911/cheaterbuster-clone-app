@@ -22,23 +22,8 @@ export default function Home() {
 	};
 
 	return (
-		<div className={`${open.menu && "overflow-y-hidden h-screen"} `}>
-			<Navbar
-				open={open}
-				toggleOpen={toggleOpen}
-				activeItem={activeItem}
-				setActiveItem={setActiveItem}
-			/>
-
-			{open.menu && (
-				<Sidebar
-					open={open}
-					toggleOpen={toggleOpen}
-					setActiveItem={setActiveItem}
-				/>
-			)}
-
-      <Hero/>
+		<div className={`${open.menu && "overflow-y-hidden h-screen "} `}>
+				<Hero />
 		</div>
 	);
 }
