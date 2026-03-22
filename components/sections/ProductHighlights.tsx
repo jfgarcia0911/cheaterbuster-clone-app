@@ -2,83 +2,98 @@ import React from "react";
 import EChartsIcon from "../icons/EchartsIcon";
 import FireIcon from "../icons/FireIcon";
 import FaceIcon from "../icons/FaceIcon";
+import Link from "next/link";
 
-type HeroColor = "red" | "yellow" | "blue" | "gray";
+type Path = "home" | "followingai" | "facetrace" | "reverse-phone-lookup";
 
 interface ProductHighlightsProps {
-	color: HeroColor;
+  activeItem: Path;
 }
 
-export default function ProductHighlights({ color }: ProductHighlightsProps) {
-	const items = [
-		{
-			title: "DATING APP SEARCH",
-			icon: <EChartsIcon className="h-8 w-8 text-white" />,
-			variant: "red",
-		},
-		{
-			title: "FOLLOWING AI",
-			icon: <FireIcon className="h-6 w-6 text-white" />,
-			variant: "yellow",
-		},
-		{
-			title: "FACE TRACE",
-			icon: <FaceIcon className="h-7 w-7 text-white" />,
-			variant: "blue",
-		},
-	];
+export default function ProductHighlights({ activeItem }: ProductHighlightsProps) {
+  // Each product has its own link and route key for highlighting
+  const items = [
+    {
+      title: "DATING APP SEARCH",
+      icon: <EChartsIcon className="h-8 w-8 text-white" />,
+      variant: "red",
+      href: "/",
+      routeKey: "home",
+    },
+    {
+      title: "FOLLOWING AI",
+      icon: <FireIcon className="h-6 w-6 text-white" />,
+      variant: "yellow",
+      href: "/followingai",
+      routeKey: "followingai",
+    },
+    {
+      title: "FACE TRACE",
+      icon: <FaceIcon className="h-7 w-7 text-white" />,
+      variant: "blue",
+      href: "/facetrace",
+      routeKey: "facetrace",
+    },
+  ];
 
-	const content = {
-		red: {
-			headline: "Are they active on dating apps?",
-			description:
-				"Find their profile. See last active time, location, new photos.",
-		},
-		yellow: {
-			headline: "Discover who they're really following",
-			description: "AI-powered analysis of their social media activity and connections.",
-		},
-		blue: {
-			headline: "Using fake photos?",
-			description: "AI Face Search. Find matching photos and public profiles.",
-		},
-		gray: {
-			headline: "Reverse Phone Search",
-			description: "Who are they texting? / Who is behind this number?",
-		},
-	}[color];
+  // Headline and description for the current active product
+  const content = {
+    home: {
+      headline: "Are they active on dating apps?",
+      description: "Find their profile. See last active time, location, new photos.",
+    },
+    followingai: {
+      headline: "Discover who they're really following",
+      description: "AI-powered analysis of their social media activity and connections.",
+    },
+    facetrace: {
+      headline: "Using fake photos?",
+      description: "AI Face Search. Find matching photos and public profiles.",
+    },
+    "reverse-phone-lookup": {
+      headline: "Reverse Phone Search",
+      description: "Who are they texting? / Who is behind this number?",
+    },
+  }[activeItem];
 
-	return (
-		<>
-			<div className="flex w-full px-6  justify-between space-x-4 mt-6">
-				{items.map((item, index) => (
-					<div
-						key={index}
-						className={`${item.variant === color ? "border-2 border-b-10" : "border"}  rounded-2xl  border-brand-${item.variant}  py-4 w-1/3 text-center cursor-pointer`}
-					>
-						<div className="justify-center items-center flex flex-col space-y-2">
-							<div
-								className={`rounded-full w-10 h-10 bg-brand-${item.variant} items-center justify-center flex`}
-							>
-								{item.icon}
-							</div>
-							<h1
-								className={`text-sm font-bold tracking-widest text-brand-${item.variant}`}
-							>
-								{item.title}
-							</h1>
-						</div>
-					</div>
-				))}
-			</div>
-			<div className="items-start px-6 mr-auto py-5">
-				<p className="font-extrabold tracking-wider">
-					{content.headline}
-					<span className="font-normal ml-1 text-sm block md:inline tracking-widest">
-						{content.description}
-					</span>
-				</p>
-			</div>
-		</>
-	);
+  return (
+    <div className="flex justify-center ">
+      <div className="flex justify-center w-350 mx-5 sm:mx-10 lg:mx-15 bg-white rounded-tr-2xl ">
+        <div className="w-full">
+          <div className="flex w-full px-6 justify-between space-x-4 mt-6">
+            {items.map((item) => {
+              const isActive = activeItem === item.routeKey;
+              return (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className={`
+                    rounded-2xl h-30 w-1/3 flex justify-center items-center text-center cursor-pointer hover:brightness-70
+                    ${isActive ? `border-2 border-b-10 border-brand-${item.variant}` : `border border-brand-${item.variant} `}
+                  `}
+                >
+                  <div className="justify-center items-center flex flex-col space-y-1 md:space-y-2">
+                    <div className={`rounded-full w-10 h-10 bg-brand-${item.variant} items-center justify-center flex`}>
+                      {item.icon}
+                    </div>
+                    <h1 className={`text-xs scale-80 md:scale-100 md:text-sm font-extrabold tracking-widest text-brand-${item.variant}`}>
+                      {item.title}
+                    </h1>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+          <div className="items-start px-6 mr-auto py-5">
+            <p className="font-extrabold tracking-wider">
+              {content.headline}
+              <span className="font-normal ml-1 text-sm block md:inline tracking-widest">
+                {content.description}
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
