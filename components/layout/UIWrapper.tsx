@@ -9,47 +9,39 @@ import { usePathname } from 'next/navigation';
 
 export default function UIWrapper({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState<{ [key: string]: boolean }>({
-		menu: false,
-		productsNavbar: false,
-		productsSidebar: false,
-		learnMoreSidebar: false,
-		learnMore: false,
-	});
+    menu: false,
+    productsNavbar: false,
+    productsSidebar: false,
+    learnMoreSidebar: false,
+    learnMore: false,
+  });
   const [activeItem, setActiveItem] = useState<string | null>("appSearch");
-const pathname = usePathname();
+  const pathname = usePathname();
+
   useCloseProductsNavbar(1024, setOpen);
 
-  const getContent = (pathname) => {
-      switch (activeItem) {
-        case "/":
-          return {
-            color: "bg-brand-red",
-          };
-        case "/followingai":
-          return {
-            color: "bg-brand-yellow",
-          };
-        case "/facetrace":
-          return {
-            color: "bg-brand-blue",
-          };
-        case "/tools":
-          return {
-            color: "bg-brand-gray",
-          };
-        default:
-          // fallback when no item is active (e.g., initial state)
-          return {
-            color: "bg-brand-red",
-          };
-      }
-    };
+  // Map route to gradient class (or background color)
+  const getBackgroundClass = (path: string) => {
+    switch (path) {
+      case '/':
+        return 'bg-linear-to-b from-red-700 to-black';
+      case '/followingai':
+        return 'bg-linear-to-b from-yellow-700 to-black';
+      case '/facetrace':
+        return 'bg-linear-to-b from-blue-700 to-black';
+      case '/reverse-phone-lookup':
+        return 'bg-linear-to-b from-gray-700 to-black';
+      default:
+        return 'bg-linear-to-b from-red-700 to-black'; // fallback
+    }
+  };
+
   const toggleOpen = (section: string) => {
     setOpen((prev) => ({ ...prev, [section]: !prev[section] }));
   };
 
   return (
-    <div className={`${open.menu && "overflow-y-hidden h-screen"} bg-linear-to-b from-red-700  to-black `}>
+    <div className={`${open.menu && "overflow-y-hidden h-screen"} ${getBackgroundClass(pathname)}`}>
       <Navbar
         open={open}
         toggleOpen={toggleOpen}
@@ -66,6 +58,5 @@ const pathname = usePathname();
       <main>{children}</main>
       <Footer/>
     </div>
-
-  )
+  );
 }
