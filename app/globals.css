@@ -35,3 +35,9 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+.diagonal-overlay {
+  background: 
+  /* linear-gradient(to bottom left, red, transparent 50%, red), */
+  linear-gradient(to bottom right, black,  transparent 70%),
+  linear-gradient(to top left, black,  transparent 70%),
+}

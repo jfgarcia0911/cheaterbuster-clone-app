@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import UIWrapper from "@/components/layout/UIWrapper";
+import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata: Metadata = {
 	title: "Ceater Buster Clone",
@@ -12,17 +13,13 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	
-
 	return (
 		<html lang="en">
-      <body>
-        <UIWrapper>
-          {children}
-        </UIWrapper>
-      </body>
-    </html>
-
-
+			<body>
+				<AuthProvider>
+					<UIWrapper>{children}</UIWrapper>
+				</AuthProvider>
+			</body>
+		</html>
 	);
 }
