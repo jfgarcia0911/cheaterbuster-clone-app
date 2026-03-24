@@ -1,12 +1,13 @@
 "use client";
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth, db } from "../../../firebase/config";
-import { doc, setDoc } from "firebase/firestore";
+import { auth, db, googleProvider } from "@/firebase/config";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import { useAuth } from "@/context/AuthContext";
-import { UserCredential } from "firebase/auth";
+import { UserCredential, signInWithPopup } from "firebase/auth";
+import GoogleIcon from "@/components/icons/GoogleIcon";
+import useScrollDirection from "@/hooks/useScrollDirection";
 
 interface FormData {
 	name: string;
@@ -24,7 +25,9 @@ interface FormErrors {
 
 export default function SignupPage() {
 	const { user } = useAuth();
-  console.log(user)
+    const isScrollingDown = useScrollDirection();
+  
+	console.log(user);
 	const [createUserWithEmailAndPassword, , loading, error] =
 		useCreateUserWithEmailAndPassword(auth);
 	const [formData, setFormData] = useState<FormData>({
@@ -47,7 +50,7 @@ export default function SignupPage() {
 	};
 
 	const handleSignin = () => {
-		router.push("/sign-in");
+		router.push("/signin");
 	};
 
 	const validateForm = (): boolean => {
@@ -97,12 +100,38 @@ export default function SignupPage() {
 				});
 				console.log("User created and saved to Firestore:", res.user);
 				alert("Account created successfully! Your data has been saved.");
-				router.push("/sign-in");
+				router.push("/signin");
 			}
 		} catch (err) {
 			console.error("Signup error:", err);
 		} finally {
 			setIsSubmitting(false);
+		}
+	};
+
+	const handleGoogleSignIn = async () => {
+		try {
+			const res = await signInWithPopup(auth, googleProvider);
+			const user = res.user;
+
+			const userDoc = await getDoc(doc(db, "amazon-users", user.uid));
+			if (!userDoc.exists()) {
+				await setDoc(doc(db, "amazon-users", user.uid), {
+					uid: user.uid,
+					displayName: user.displayName,
+					email: user.email,
+					photoURL: user.photoURL,
+					isAdmin: false,
+					provider: "google",
+					createdAt: new Date(),
+				});
+				console.log("New user created in Firestore");
+			}
+			router.push("/");
+		} catch (err) {
+			setErrors({
+				password: `Google sign-in error: ${err instanceof Error ? err.message : "Unknown error"}`,
+			});
 		}
 	};
 
@@ -113,23 +142,18 @@ export default function SignupPage() {
 	}, [user, router]);
 
 	return (
-		<div className="p-10 flex justify-center w-full">
-			<div>
-				<div className="relative w-40 mx-auto">
-					<Image
-						alt="amazon logo"
-						src="/amazon.png"
-						width={50}
-						height={50}
-						priority
-						className="mx-auto mb-5 w-auto h-auto"
-					/>
-				</div>
+		<div className={`p-10 flex justify-center diagonal-overlay w-full ${isScrollingDown ? "mt-20" : ""}` }>
+			<div className="flex flex-col items-center mt-5">
+				<h1 className="text-white font-bold tracking-tight text-5xl">
+					JOIN THE <span className="text-red-500">HUNT</span>
+				</h1>
+				<p className="text-white/80 mt-4 mb-8 tracking-widest">
+					Create your account and start uncovering the truth
+				</p>
 
-				<div className="border border-gray-300 rounded-xl w-90 p-5">
-					<h1 className="text-3xl text-center mb-3">Create Account</h1>
-					<form onSubmit={handleSubmit}>
-						<label htmlFor="name" className="block text-sm font-bold mb-1">
+				<div className="border border-gray-800 rounded-xl w-120 p-5 bg-foreground text-white/70">
+					<form onSubmit={handleSubmit} className="">
+						<label htmlFor="name" className="block text-sm font-bold mb-2">
 							Your Name
 						</label>
 						<input
@@ -138,7 +162,7 @@ export default function SignupPage() {
 							value={formData.name}
 							onChange={handleChange}
 							placeholder="Enter your name"
-							className={`w-full border rounded-sm p-2 pl-3 border-gray-400 focus:outline-none ${
+							className={`bg-black/80  w-full border rounded-xl p-2 pl-3 border-gray-800 focus:outline-none tracking-widest ${
 								errors.name
 									? "border-red-500 focus:border-red-500"
 									: "focus:ring-1 focus:ring-blue-400 mb-2"
@@ -146,8 +170,8 @@ export default function SignupPage() {
 						/>
 						<p className="text-red-500 mb-2 mt-1 text-sm">{errors.name}</p>
 
-						<label htmlFor="email" className="block text-sm font-bold mb-1">
-							Email
+						<label htmlFor="email" className="block text-sm font-bold mb-2">
+							Email Address
 						</label>
 						<input
 							id="email"
@@ -155,7 +179,7 @@ export default function SignupPage() {
 							value={formData.email}
 							onChange={handleChange}
 							placeholder="Enter your email"
-							className={`w-full border rounded-sm p-2 pl-3 border-gray-400 focus:outline-none ${
+							className={`bg-black/80 w-full border rounded-xl p-2 pl-3 border-gray-800 focus:outline-none tracking-widest ${
 								errors.email
 									? "border-red-500 focus:border-red-500"
 									: "focus:ring-1 focus:ring-blue-400 mb-2"
@@ -172,7 +196,7 @@ export default function SignupPage() {
 							value={formData.password}
 							onChange={handleChange}
 							placeholder="At least 6 characters"
-							className={`w-full border rounded-sm p-2 pl-3 border-gray-400 focus:outline-none ${
+							className={`bg-black/80 w-full border rounded-xl p-2 pl-3 border-gray-800 focus:outline-none tracking-widest ${
 								errors.password
 									? "border-red-500 focus:border-red-500"
 									: "focus:ring-1 focus:ring-blue-400 mb-2"
@@ -192,7 +216,7 @@ export default function SignupPage() {
 							value={formData.confirmPassword}
 							onChange={handleChange}
 							placeholder="Confirm your password"
-							className={`w-full border rounded-sm p-2 pl-3 border-gray-400 focus:outline-none ${
+							className={`bg-black/80 w-full border rounded-xl p-2 pl-3 border-gray-800 focus:outline-none tracking-widest ${
 								errors.confirmPassword
 									? "border-red-500 focus:border-red-500"
 									: "focus:ring-1 focus:ring-blue-400 mb-2"
@@ -205,31 +229,42 @@ export default function SignupPage() {
 						<button
 							type="submit"
 							disabled={isSubmitting || loading}
-							className="bg-yellow-300 p-2 w-full rounded-4xl mt-2 text-sm cursor-pointer disabled:opacity-50"
+							className="bg-red-600 text-white font-bold p-3 w-full rounded-xl mt-2  cursor-pointer disabled:opacity-50 hover:[box-shadow:0_6px_10px_rgba(255,0,0,0.4)]"
 						>
-							{isSubmitting ? "Creating account..." : "Create Amazon account"}
+							{isSubmitting ? (
+								<div className="flex items-center justify-center space-x-2">
+									<div className="w-6 h-6 border-4 border-white/60 border-t-transparent rounded-full animate-spin"></div>
+									<span>Creating Account...</span>
+								</div>
+							) : (
+								"Create account"
+							)}
 						</button>
 					</form>
 					<div className="relative mt-6">
 						<div className="absolute inset-0 flex items-center">
-							<div className="w-full border-t border-gray-300"></div>
+							<div className="w-full border-t border-gray-800"></div>
 						</div>
 						<div className="relative flex justify-center text-sm">
-							<span className="px-2 bg-white text-gray-500">
-								Or continue with
+							<span className="px-3 bg-foreground text-gray-500 tracking-wider">
+								or continue with
 							</span>
 						</div>
 					</div>
-					<div className="mt-6 flex items-center justify-center space-x-1 border p-2 border-gray-300 rounded-lg text-sm cursor-pointer">
-						<Image alt="google icon" src="/google.png" width={30} height={30} />
-						<span>Sign up with Google</span>
+
+					<div
+						onClick={handleGoogleSignIn}
+						className="mt-6 flex items-center justify-center space-x-1 border p-2 border-gray-800 rounded-lg text-sm cursor-pointer gap-1 bg-black/80"
+					>
+						<GoogleIcon className="h-4 w-4 " />
+						<span>Google</span>
 					</div>
 					<div
 						onClick={handleSignin}
 						className="mt-6 text-center text-gray-500 text-sm"
 					>
 						<span>Already have an account? </span>
-						<span className="text-blue-500 cursor-pointer">Sign in</span>
+						<span className="text-red-500 cursor-pointer">Sign in</span>
 					</div>
 				</div>
 			</div>
