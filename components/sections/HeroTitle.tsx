@@ -5,7 +5,7 @@ import FireIcon from "../icons/FireIcon";
 import PhoneIcon from "../icons/PhoneIcon";
 import BottomBanner from "./BottomBanner";
 
-type Path = "home" | "followingai" | "facetrace" | "reverse-phone-lookup";
+type Path = "home" | "followingai" | "facetrace" | "reverse-phone-lookup" | "name-search" | "address-search"
 
 interface HeroTitleProps {
 	activeItem: Path;
@@ -57,6 +57,24 @@ export default function HeroTitle({ activeItem  }: HeroTitleProps) {
 				<>
 					<h1 className="text-2xl md:text-3xl font-bold">REVERSE</h1>
 					<h1 className="text-4xl lg:text-6xl">PHONE LOOKUP</h1>
+				</>
+			),
+			icon: <PhoneIcon className="w-20 md:w-40 h-25 md:h-45 rotate-10" />,
+		},
+    "name-search": {
+			title: (
+				<>
+					<h1 className="text-2xl md:text-3xl font-bold">REVERSE</h1>
+					<h1 className="text-4xl lg:text-6xl">NAME LOOKUP</h1>
+				</>
+			),
+			icon: <PhoneIcon className="w-20 md:w-40 h-25 md:h-45 rotate-10" />,
+		},
+    "address-search": {
+			title: (
+				<>
+					<h1 className="text-2xl md:text-3xl font-bold">REVERSE</h1>
+					<h1 className="text-4xl lg:text-6xl">ADDRESS LOOKUP</h1>
 				</>
 			),
 			icon: <PhoneIcon className="w-20 md:w-40 h-25 md:h-45 rotate-10" />,
