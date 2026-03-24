@@ -7,7 +7,6 @@ export default function useScrollDirection() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-console.log(currentScrollY)
       if (currentScrollY >= 50) {
         setIsScrollingDown(true);
       } else  {
