@@ -13,6 +13,7 @@ export default function UIWrapper({ children }: { children: React.ReactNode }) {
     productsNavbar: false,
     productsSidebar: false,
     learnMoreSidebar: false,
+    myAccountSidebar: false,
     learnMore: false,
   });
   const [activeItem, setActiveItem] = useState<string | null>("appSearch");
