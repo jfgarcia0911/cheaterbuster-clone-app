@@ -1,7 +1,5 @@
 "use client";
 import Hero from "@/components/layout/Hero";
-import Navbar from "@/components/layout/Navbar";
-import Sidebar from "@/components/layout/Sidebar";
 import { useCloseProductsNavbar } from "@/hooks/useCloseProductsNavbar";
 import { useState } from "react";
 
@@ -13,14 +11,9 @@ export default function Home() {
 		learnMoreSidebar: false,
 		learnMore: false,
 	});
-	const [activeItem, setActiveItem] = useState<string | null>("appSearch");
 
 	useCloseProductsNavbar(1024, setOpen);
-
-	const toggleOpen = (section: string) => {
-		setOpen((prev) => ({ ...prev, [section]: !prev[section] }));
-	};
-
+	
 	return (
 		<div className={`${open.menu && "overflow-y-hidden h-screen "} `}>
 				<Hero />
