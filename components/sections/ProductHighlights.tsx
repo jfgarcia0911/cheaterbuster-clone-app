@@ -55,21 +55,20 @@ export default function ProductHighlights({ activeItem }: ProductHighlightsProps
       description: "Who are they texting? / Who is behind this number?",
     },
   }[activeItem];
-
   return (
     <div className="flex justify-center ">
       <div className="flex justify-center w-350 mx-5 sm:mx-10 lg:mx-15 bg-white rounded-tr-2xl ">
         <div className="w-full">
           <div className="flex w-full px-6 justify-between space-x-4 mt-6">
-            {items.map((item) => {
+            {items.map((item, index) => {
               const isActive = activeItem === item.routeKey;
               return (
                 <Link
-                  key={item.title}
+                  key={index}
                   href={item.href}
                   className={`
-                    rounded-2xl h-30 w-1/3 flex justify-center items-center text-center cursor-pointer hover:brightness-70
-                    ${isActive ? `border-2 border-b-10 border-brand-${item.variant}` : `border border-brand-${item.variant} `}
+                    rounded-2xl h-30 w-1/3 flex justify-center items-center text-center cursor-pointer hover:brightness-70 
+                    ${isActive ? `border-2 border-b-10 border-brand-${item.variant} ` : `border border-brand-${item.variant} `}
                   `}
                 >
                   <div className="justify-center items-center flex flex-col space-y-1 md:space-y-2">
@@ -83,6 +82,7 @@ export default function ProductHighlights({ activeItem }: ProductHighlightsProps
                 </Link>
               );
             })}
+            
           </div>
           <div className="items-start px-6 mr-auto py-5">
             <p className="font-extrabold tracking-wider">
