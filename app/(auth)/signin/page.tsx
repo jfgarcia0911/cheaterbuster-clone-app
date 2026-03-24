@@ -4,14 +4,18 @@ import Image from "next/image";
 import { Mail, Lock } from "lucide-react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth, googleProvider, db } from "@/firebase/config";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, UserCredential } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
-import { UserCredential } from "firebase/auth";
 import useScrollDirection from "@/hooks/useScrollDirection";
 import GoogleIcon from "@/components/icons/GoogleIcon";
-import { setPersistence, browserLocalPersistence, browserSessionPersistence } from "firebase/auth";
+import {
+	setPersistence,
+	browserLocalPersistence,
+	browserSessionPersistence,
+} from "firebase/auth";
+
 interface FormData {
 	email: string;
 	password: string;
@@ -69,8 +73,11 @@ export default function SignInPage() {
 		setIsSubmitting(true);
 
 		try {
-      // Set persistence based on checkbox value
-    await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
+			// Set persistence based on checkbox value
+			await setPersistence(
+				auth,
+				rememberMe ? browserLocalPersistence : browserSessionPersistence,
+			);
 			const res: UserCredential | undefined = await signInWithEmailAndPassword(
 				formData.email,
 				formData.password,
@@ -92,7 +99,10 @@ export default function SignInPage() {
 
 	const handleGoogleSignIn = async () => {
 		try {
-      await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
+			await setPersistence(
+				auth,
+				rememberMe ? browserLocalPersistence : browserSessionPersistence,
+			);
 			const res = await signInWithPopup(auth, googleProvider);
 			const user = res.user;
 
@@ -135,7 +145,7 @@ export default function SignInPage() {
 					WELCOME <span className="text-red-500">BACK</span>
 				</h1>
 				<p className="text-white">Sign in to continue your investigation</p>
-				<div className="border border-gray-800  bg-foreground rounded-xl w-90 mt-4 p-5 text-white/70">
+				<div className="border border-gray-800  bg-foreground rounded-xl w-120 mt-4 p-5 text-white/70">
 					<form onSubmit={handleSubmit}>
 						{error && (
 							<div className="border border-red-500 bg-red-500/20 mb-4  rounded-lg p-3 ">
@@ -158,7 +168,7 @@ export default function SignInPage() {
 							value={formData.email}
 							onChange={handleChange}
 							placeholder="you@example.com"
-							className={`w-full border border-gray-800 rounded-lg p-2 pl-10  focus:outline-none ${
+							className={`w-full border border-gray-800 rounded-lg p-2 pl-10 bg-black/80  focus:outline-none tracking-widest ${
 								errors.email
 									? "border-red-500 focus:border-red-500"
 									: "focus:ring-2 focus:ring-red-800 mb-2"
@@ -180,7 +190,7 @@ export default function SignInPage() {
 							value={formData.password}
 							onChange={handleChange}
 							placeholder="Enter your password"
-							className={`w-full border rounded-lg p-2 pl-10 border-gray-800 focus:outline-none ${
+							className={`w-full border border-gray-800 rounded-lg p-2 pl-10 bg-black/80 focus:outline-none tracking-widest ${
 								errors.password
 									? "border-red-500 focus:border-red-500"
 									: "focus:ring-2 focus:ring-red-800 mb-2"
@@ -219,7 +229,7 @@ export default function SignInPage() {
 							<div className="w-full border-t border-gray-800"></div>
 						</div>
 						<div className="relative flex justify-center text-sm">
-							<span className="px-3 bg-foreground text-gray-500">
+							<span className="px-3 bg-foreground text-gray-500 tracking-wider">
 								or continue with
 							</span>
 						</div>
