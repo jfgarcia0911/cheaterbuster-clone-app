@@ -4,6 +4,7 @@ import EChartsIcon from "@/components/icons/EchartsIcon";
 import FireIcon from "@/components/icons/FireIcon";
 import FaceIcon from "@/components/icons/FaceIcon";
 import ToolsIcon from "@/components/icons/ToolsIcon";
+import Link from "next/link";
 
 interface SidebarProps {
 	open: { [key: string]: boolean };
@@ -46,24 +47,33 @@ export default function Sidebar({
 								<EChartsIcon className="h-4 w-4 " />
 								<h1>App Search</h1>
 							</div>
-							<div onClick={() => {
+							<div
+								onClick={() => {
 									setActiveItem("followingAI");
 									toggleOpen("menu");
-								}} className="flex items-center space-x-2 font-semibold text-yellow-500 cursor-pointer">
+								}}
+								className="flex items-center space-x-2 font-semibold text-yellow-500 cursor-pointer"
+							>
 								<FireIcon className="h-4 w-4 " />
 								<h1>Following AI</h1>
 							</div>
-							<div onClick={() => {
+							<div
+								onClick={() => {
 									setActiveItem("facetrace");
 									toggleOpen("menu");
-								}} className="flex items-center space-x-2 font-semibold text-blue-500 cursor-pointer">
+								}}
+								className="flex items-center space-x-2 font-semibold text-blue-500 cursor-pointer"
+							>
 								<FaceIcon className="h-4 w-4 " />
 								<h1>FaceTrace</h1>
 							</div>
-							<div onClick={() => {
+							<div
+								onClick={() => {
 									setActiveItem("tools");
 									toggleOpen("menu");
-								}} className="flex items-center space-x-2 font-semibold text-gray-500 cursor-pointer">
+								}}
+								className="flex items-center space-x-2 font-semibold text-gray-500 cursor-pointer"
+							>
 								<ToolsIcon className="h-4 w-4 " />
 								<h1>Tools</h1>
 							</div>
@@ -86,6 +96,19 @@ export default function Sidebar({
 							<h1>Contact</h1>
 						</div>
 					)}
+
+					<div className="flex flex-col items-center gap-2 mt-10">
+						<div className="text-black w-full text-center cursor-pointer">
+							<div className="mx-6 bg-white p-2 rounded-xl font-bold border border-transparent hover:border-gray-300">
+								Sign In
+							</div>
+						</div>
+						<Link href="/signup" className="text-white w-full text-center cursor-pointer hover:opacity-80">
+							<div className="mx-6 bg-black p-2 rounded-xl font-bold">
+								Sign Up
+							</div>
+						</Link>
+					</div>
 				</div>
 			</div>
 		</div>
