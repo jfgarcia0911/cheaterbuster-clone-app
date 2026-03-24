@@ -10,12 +10,14 @@ import TestimonialSection from "../sections/TestimonialSection";
 // Define the allowed path values (same as your Path type)
 const pathMap: Record<
 	string,
-	"home" | "followingai" | "facetrace" | "reverse-phone-lookup"
+	"home" | "followingai" | "facetrace" | "reverse-phone-lookup" | "name-search" | "address-search"
 > = {
 	"/": "home",
 	"/followingai": "followingai",
 	"/facetrace": "facetrace",
 	"/reverse-phone-lookup": "reverse-phone-lookup",
+	"/name-search": "name-search",
+	"/address-search": "address-search",
 };
 
 export default function Hero() {
