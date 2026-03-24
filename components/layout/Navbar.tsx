@@ -1,5 +1,4 @@
 "use client";
-import React, { useState } from "react";
 import CustomImage from "../ui/CustomImage";
 import { ChevronDown, ChevronUp, LayoutGrid } from "lucide-react";
 import NavbarDropdown from "../Navbar/ProductDropdown";

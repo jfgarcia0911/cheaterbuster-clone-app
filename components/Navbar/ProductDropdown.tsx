@@ -5,7 +5,7 @@ import FaceIcon from "@/components/icons/FaceIcon";
 import { UserRound, House, Mail, Phone } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import path from "path";
+
 interface NavbarDropdownProps {
 	activeItem: string | null;
 	setActiveItem: (item: string) => void;

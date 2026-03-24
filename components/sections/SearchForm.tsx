@@ -1,5 +1,4 @@
 import { MoveRight } from "lucide-react";
-import React from "react";
 import FaceIcon from "../icons/FaceIcon";
 
 type ActiveItem = "home" | "followingai" | "facetrace" | "reverse-phone-lookup";

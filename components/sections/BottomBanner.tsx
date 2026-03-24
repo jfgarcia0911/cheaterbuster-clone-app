@@ -1,7 +1,5 @@
-import React from "react";
 import { motion } from "framer-motion";
 import CustomImage from "../ui/CustomImage";
-import { div } from "framer-motion/client";
 
 export default function BottomBanner() {
 	const items = [

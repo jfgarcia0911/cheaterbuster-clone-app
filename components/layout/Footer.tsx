@@ -1,4 +1,3 @@
-import React from 'react'
 import FacebookIcon from '../icons/FacebookIcon'
 import InstagramIcon from '../icons/InstagramIcon'
 import YoutubeIcon from '../icons/YoutubeIcon'

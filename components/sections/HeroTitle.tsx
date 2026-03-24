@@ -3,7 +3,6 @@ import FaceIcon from "../icons/FaceIcon";
 import EChartsIcon from "../icons/EchartsIcon";
 import FireIcon from "../icons/FireIcon";
 import PhoneIcon from "../icons/PhoneIcon";
-import Container from "../ui/Container";
 import BottomBanner from "./BottomBanner";
 
 type Path = "home" | "followingai" | "facetrace" | "reverse-phone-lookup";
