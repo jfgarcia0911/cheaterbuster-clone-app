@@ -31,11 +31,23 @@ export default function TopBanner({ activeItem = "/" }: TopBannerProps) {
 					icon: FaceIcon,
 					color: "bg-brand-blue",
 				};
-			case "/tools":
+			case "/reverse-phone-lookup":
 				return {
 					text: "REVERESE PHONE NAME AND ADDRESS SEARCH, ALL IN ONE",
-					icon: ToolsIcon,
-					color: "bg-brand-gray",
+					icon: SearchIcon,
+					color: "bg-black",
+				};
+        case "/name-search":
+				return {
+					text: "REVERESE PHONE NAME AND ADDRESS SEARCH, ALL IN ONE",
+					icon: SearchIcon,
+					color: "bg-black",
+				};
+        case "/address-search":
+				return {
+					text: "REVERESE PHONE NAME AND ADDRESS SEARCH, ALL IN ONE",
+					icon: SearchIcon,
+					color: "bg-black",
 				};
 			default:
 				// fallback when no item is active (e.g., initial state)

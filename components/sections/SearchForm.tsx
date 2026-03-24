@@ -1,8 +1,7 @@
 import { MoveRight } from "lucide-react";
 import FaceIcon from "../icons/FaceIcon";
 
-type ActiveItem = "home" | "followingai" | "facetrace" | "reverse-phone-lookup";
-
+type ActiveItem = "home" | "followingai" | "facetrace" | "reverse-phone-lookup" | "name-search" | "address-search"
 // Define the shape of an input field
 type InputType = {
   type: string;
@@ -62,11 +61,35 @@ export default function SearchForm({ activeItem }: SearchFormProps) {
 				{
 					type: "text",
 					name: "phone-number",
-					placeholder: "Enter their phone number.",
+					placeholder: "Enter their phone number",
 				},
 			],
 			buttonText: "Search",
+			color: "gray-800",
+			layout: "1x2",
+		},
+    "name-search": {
+			inputs: [
+				{
+					type: "text",
+					name: "name",
+					placeholder: "Enter their name",
+				},
+			],
+			buttonText: "Get Results",
 			color: "brand-gray",
+			layout: "1x2",
+		},
+    "address-search": {
+			inputs: [
+				{
+					type: "text",
+					name: "address",
+					placeholder: "Enter their address",
+				},
+			],
+			buttonText: "Search",
+			color: "gray-800",
 			layout: "1x2",
 		},
 	};
@@ -84,11 +107,11 @@ export default function SearchForm({ activeItem }: SearchFormProps) {
 								<input
 									key={i}
 									{...input}
-									className="w-full rounded-2xl border border-gray-300 py-4 pl-4 tracking-widest focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition"
+									className="w-full rounded-2xl border-3 border-black py-4 pl-4 tracking-widest focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition"
 								/>
 							))}
 						</div>
-						<button className="flex items-center justify-center gap-2 rounded-xl bg-brand-red/80 py-4 font-bold text-white transition hover:bg-brand-red">
+						<button className={`flex items-center justify-center gap-2 rounded-xl  py-4 font-bold text-white transition hover:bg-brand-red bg-${config.color}  `}>
 							{config.buttonText} <MoveRight className="h-5 w-5" />
 						</button>
 					</div>
@@ -101,7 +124,7 @@ export default function SearchForm({ activeItem }: SearchFormProps) {
 								<input
 									key={i}
 									{...input}
-									className="w-full rounded-2xl border border-gray-300 py-4 pl-4 tracking-widest focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow outline-none transition"
+									className="w-full rounded-2xl border-3 border-black py-4 pl-4 tracking-widest focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow outline-none transition"
 								/>
 							))}
 						</div>
