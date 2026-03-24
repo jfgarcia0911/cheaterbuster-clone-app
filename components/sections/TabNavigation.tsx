@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface TabNavigationProps {
@@ -48,20 +49,20 @@ const isCheaterTab = ["/", "/followingai", "/facetrace"].includes(activeItem ?? 
 				<div className="flex w-full ">
 					{isCheaterTab ? (
 						<>
-							<div className="w-2/3 py-1 text-center rounded-t-2xl bg-white font-bold text-lg">
+							<div  className="w-2/3 py-1 text-center rounded-t-2xl bg-white font-bold text-lg ">
 								Bust a Cheater
 							</div>
-							<div
+							<Link href="reverse-phone-lookup"
 								className={`w-1/3 py-1 text-center rounded-t-2xl ${color} font-bold text-lg text-white mr-4`}
 							>
 								DateSafe Tools
-							</div>
+							</Link>
 						</>
 					) : (
 						<>
-							<div className="w-1/3 py-1 text-center rounded-t-2xl ${color} text-white font-bold text-lg">
+							<Link href="/" className="w-1/3 py-1 text-center rounded-t-2xl ${color} text-white font-bold text-lg">
 								Bust a Cheater
-							</div>
+							</Link>
 							<div
 								className={`w-2/3 py-1 text-center rounded-t-2xl bg-white   font-bold text-lg mr-4`}
 							>
