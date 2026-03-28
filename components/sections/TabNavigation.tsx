@@ -44,7 +44,7 @@ const isCheaterTab = ["/", "/followingai", "/facetrace"].includes(activeItem ?? 
 	const {  color } = getContent();
 	return (
 	
-		<div className="flex  justify-center">
+		<div className="flex items-center  justify-center">
 			<div className="flex justify-center w-350 mx-5 sm:mx-10 lg:mx-15  ">
 				<div className="flex w-full ">
 					{isCheaterTab ? (
@@ -60,11 +60,11 @@ const isCheaterTab = ["/", "/followingai", "/facetrace"].includes(activeItem ?? 
 						</>
 					) : (
 						<>
-							<Link href="/" className="w-1/3 py-1 text-center rounded-t-2xl ${color} text-white font-bold text-lg">
+							<Link href="/" className="w-1/3 py-1 text-center rounded-t-2xl ${color} text-white font-bold text-lg bg-gray-500 ml-4">
 								Bust a Cheater
 							</Link>
 							<div
-								className={`w-2/3 py-1 text-center rounded-t-2xl bg-white   font-bold text-lg mr-4`}
+								className={`w-2/3 py-1 text-center rounded-t-2xl bg-white   font-bold text-lg `}
 							>
 								<h1>DateSafe Tools</h1>
 								
