@@ -54,24 +54,24 @@ export default function ProductHighlights({
 		},
 	];
 
-	const tools = [		
+	const tools = [
 		{
 			title: "PHONE SEARCH",
-			icon: <PhoneIcon  />,
+			icon: <PhoneIcon />,
 			variant: "gray",
 			href: "/reverse-phone-lookup",
 			routeKey: "reverse-phone-lookup",
 		},
 		{
 			title: "NAME SEARCH",
-			icon: <UserIcon  />,
+			icon: <UserIcon />,
 			variant: "gray",
 			href: "/name-search",
 			routeKey: "name-search",
 		},
 		{
 			title: "ADDRESS SEARCH",
-			icon: <HouseIcon  />,
+			icon: <HouseIcon />,
 			variant: "gray",
 			href: "/address-search",
 			routeKey: "address-search",
@@ -100,7 +100,8 @@ export default function ProductHighlights({
 		},
 		"name-search": {
 			headline: "Name/Identity Search:",
-			description: "Am I getting catfished? / Who is the person they're talking to?",
+			description:
+				"Am I getting catfished? / Who is the person they're talking to?",
 		},
 		"address-search": {
 			headline: "Reverse Address Search:",
@@ -108,14 +109,16 @@ export default function ProductHighlights({
 		},
 	}[activeItem];
 
-  const isSearchActive = 
-  activeItem === "reverse-phone-lookup" || 
-  activeItem === "name-search" || 
-  activeItem === "address-search";
+	const isSearchActive =
+		activeItem === "reverse-phone-lookup" ||
+		activeItem === "name-search" ||
+		activeItem === "address-search";
 
 	return (
 		<div className="flex justify-center ">
-			<div className={`flex justify-center w-350 mx-5 sm:mx-10 lg:mx-15 bg-white ${isSearchActive? "rounded-tl-2xl" : "rounded-tr-2xl"} `}>
+			<div
+				className={`flex justify-center w-350 mx-5 sm:mx-10 lg:mx-15 bg-white ${isSearchActive ? "rounded-tl-2xl" : "rounded-tr-2xl"} `}
+			>
 				<div className="w-full">
 					<div className="flex w-full px-6 justify-between space-x-4 mt-6">
 						{isSearchActive ? (
@@ -175,7 +178,27 @@ export default function ProductHighlights({
 										href={item.href}
 										className={`
                     rounded-2xl h-30 w-1/3 flex justify-center items-center text-center cursor-pointer hover:brightness-70 
-                    ${isActive ? `border-t-2 border-x-2 border-b-10 border-${item.variant}-500 ` : `border border-${item.variant}-500 `}
+                    ${
+											isActive
+												? `border-t-2 border-x-2 border-b-10 ${
+														item.variant === "red"
+															? "border-red-500"
+															: item.variant === "yellow"
+																? "border-yellow-500"
+																: item.variant === "blue"
+																	? "border-blue-500"
+																	: "border-gray-500"
+													}`
+												: `border ${
+														item.variant === "red"
+															? "border-red-500"
+															: item.variant === "yellow"
+																? "border-yellow-500"
+																: item.variant === "blue"
+																	? "border-blue-500"
+																	: "border-gray-500"
+													}`
+										}
                   `}
 									>
 										<div className="justify-center items-center flex flex-col space-y-1 md:space-y-2">
