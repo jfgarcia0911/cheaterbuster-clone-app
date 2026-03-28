@@ -12,6 +12,7 @@ type InputType = {
 // Discriminated union for form configurations
 type Config =
   | { layout: "1x2"; inputs: InputType[]; buttonText: string; color: string }
+  | { layout: "1x2gray"; inputs: InputType[]; buttonText: string; color: string }
   | { layout: "2x1"; inputs: InputType[]; buttonText: string; color: string }
   | { layout: "file"; fileUpload: boolean; buttonText: string; color: string };
 
@@ -66,7 +67,7 @@ export default function SearchForm({ activeItem }: SearchFormProps) {
 			],
 			buttonText: "Search",
 			color: "gray-800",
-			layout: "1x2",
+			layout: "1x2gray",
 		},
     "name-search": {
 			inputs: [
@@ -78,7 +79,7 @@ export default function SearchForm({ activeItem }: SearchFormProps) {
 			],
 			buttonText: "Get Results",
 			color: "brand-gray",
-			layout: "1x2",
+			layout: "1x2gray",
 		},
     "address-search": {
 			inputs: [
@@ -90,7 +91,7 @@ export default function SearchForm({ activeItem }: SearchFormProps) {
 			],
 			buttonText: "Search",
 			color: "gray-800",
-			layout: "1x2",
+			layout: "1x2gray",
 		},
 	};
 
@@ -111,7 +112,24 @@ export default function SearchForm({ activeItem }: SearchFormProps) {
 								/>
 							))}
 						</div>
-						<button className={`flex items-center justify-center gap-2 rounded-xl  py-4 font-bold text-white transition hover:bg-brand-red bg-${config.color}  `}>
+						<button className={`flex items-center justify-center gap-2 rounded-xl  py-4 font-bold text-white transition hover:bg-red-600 bg-${config.color}  `}>
+							{config.buttonText} <MoveRight className="h-5 w-5" />
+						</button>
+					</div>
+				);
+        case "1x2gray":
+				return (
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+						<div className="md:col-span-2">
+							{config.inputs.map((input, i) => (
+								<input
+									key={i}
+									{...input}
+									className="w-full rounded-2xl border-3 border-black py-4 pl-4 tracking-widest outline-none transition"
+								/>
+							))}
+						</div>
+						<button className={`flex items-center justify-center gap-2 rounded-xl  py-4 font-bold text-white transition hover:bg-gray-900 bg-${config.color}  `}>
 							{config.buttonText} <MoveRight className="h-5 w-5" />
 						</button>
 					</div>
