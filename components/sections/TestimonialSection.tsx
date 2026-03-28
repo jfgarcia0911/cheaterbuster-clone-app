@@ -1,7 +1,7 @@
 import React from "react";
 // import TweetEmbed from "@/components/ui/TweetEmbed";
 import { motion } from "framer-motion";
-import { Tweet } from 'react-tweet'
+import { Tweet } from "react-tweet";
 const tweetIds = [
 	"1626595726569635840",
 	"1826726572222808230",
@@ -14,14 +14,13 @@ const tweetIds = [
 
 export default function TestimonialSection() {
 	return (
-    <div className="relative">
-    <h1 className="absolute top-7 text-white/80 tracking-widest mx-5 sm:mx-10 lg:mx-15 font-bold text-sm">
-            THE AI YOU&apos;VE SEEN  💥EVERYWHERE💥</h1>
+		<div className="">
 			<div className="flex justify-center ">
-        
-				<div className="flex justify-center w-350 mx-5 sm:mx-10 lg:mx-15  overflow-hidden ">
-					
-            <div className="flex">
+				<div className="flex relative justify-center w-350 mx-5 sm:mx-10 lg:mx-15  overflow-hidden ">
+					<h2 className="absolute top-7 left-0 text-white/80 tracking-widest  font-bold text-sm">
+						THE AI YOU&apos;VE SEEN 💥EVERYWHERE💥
+					</h2>
+					<div className="flex">
 						<motion.div
 							className="flex whitespace-nowrap tracking-widest  text-white"
 							animate={{ x: ["0%", "-100%"] }}
@@ -31,11 +30,14 @@ export default function TestimonialSection() {
 								ease: "linear",
 							}}
 						>
-							{Array.from({ length: 1}).map((_, repeatIndex) =>
+							{Array.from({ length: 1 }).map((_, repeatIndex) =>
 								tweetIds.map((tweetId, index) => {
 									return (
-										<div key={`${repeatIndex}-${index}`} className="w-70 scale-80 cursor-pointer">
-                      <Tweet id={tweetId} />
+										<div
+											key={`${repeatIndex}-${index}`}
+											className="w-70 scale-80 cursor-pointer"
+										>
+											<Tweet id={tweetId} />
 										</div>
 									);
 								}),
@@ -43,6 +45,7 @@ export default function TestimonialSection() {
 						</motion.div>
 					</div>
 				</div>
-			</div></div>
+			</div>
+		</div>
 	);
 }
