@@ -175,12 +175,12 @@ export default function ProductHighlights({
 										href={item.href}
 										className={`
                     rounded-2xl h-30 w-1/3 flex justify-center items-center text-center cursor-pointer hover:brightness-70 
-                    ${isActive ? `border-2 border-b-10 border-${item.variant}-500 ` : `border border-${item.variant}-500 `}
+                    ${isActive ? `border-t-2 border-x-2 border-b-10 border-${item.variant}-500 ` : `border border-${item.variant}-500 `}
                   `}
 									>
 										<div className="justify-center items-center flex flex-col space-y-1 md:space-y-2">
 											<div
-												className={`rounded-full w-10 h-10 bg-${item.variant}-500 items-center justify-center flex`}
+												className={`rounded-full w-10 h-10 bg-brand-${item.variant} items-center justify-center flex`}
 											>
 												{item.icon}
 											</div>
