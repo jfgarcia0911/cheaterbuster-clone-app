@@ -45,6 +45,7 @@ export default function Navbar({
 						<CustomImage
 							link="/cheater-buster-logo.png"
 							dimensions="h-20 w-25 lg:w-30"
+              alt="Cheater Buster Logo"
 						/>
 					</Link>
 					{/* Right Navigation */}
@@ -93,6 +94,7 @@ export default function Navbar({
 											<CustomImage
 												link={user.photoURL}
 												dimensions="h-7 w-7 rounded-full"
+                        alt="User Profile Picture"
 											/>
 										)}
 									</div>

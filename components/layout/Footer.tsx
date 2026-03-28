@@ -9,7 +9,7 @@ export default function Footer() {
     <div className='w-full  bg-black rounded-t-[3rem] flex  justify-center'>
       <div className='w-100 gap-10 mt-20 mb-15 flex flex-col items-center justify-center'>
         <div className='flex items-center text-6xl font-extrabold text-brand-red'>
-          <CustomImage link='/cb-footer-logo.png' dimensions='h-10 w-60'/>
+          <CustomImage link='/cb-footer-logo.png' dimensions='h-10 w-60' alt='Cheater Buster Logo'/>
         </div>
         <div className='flex gap-8 text-white'>
           <FacebookIcon className=' h-8 w-8'/>

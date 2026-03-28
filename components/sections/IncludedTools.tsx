@@ -16,6 +16,7 @@ export default function IncludedTools() {
 							<CustomImage
 								link="/date-safe.png"
 								dimensions="h-10 w-35 lg:w-55"
+                alt="Data Safe Logo"
 							/>
 							<p className=" text-sm lg:text-xs">
 								Also included with your search:

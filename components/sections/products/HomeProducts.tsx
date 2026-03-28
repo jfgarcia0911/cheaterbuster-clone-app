@@ -1,9 +1,7 @@
 import EChartsIcon from "@/components/icons/EchartsIcon";
-import SearchIcon from "@/components/icons/SearchIcon";
 import Container from "@/components/ui/Container";
 import React from "react";
 import { Anton } from "next/font/google";
-import CustomImage from "@/components/ui/CustomImage";
 import Image from "next/image";
 import FireIcon from "@/components/icons/FireIcon";
 

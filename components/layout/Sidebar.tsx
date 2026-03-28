@@ -46,7 +46,7 @@ export default function Sidebar({
 					{user && (
 						<div className="flex items-center gap-3 ml-4 mb-8">
 							<div className="rounded-full overflow-hidden w-10">
-								<CustomImage link={user?.photoURL} dimensions="h-10 w-10" />
+								<CustomImage link={user?.photoURL} dimensions="h-10 w-10" alt="User Profile Picture" />
 							</div>{" "}
 							<h2 className="font-semibold text-sm">{user?.email}</h2>
 						</div>
