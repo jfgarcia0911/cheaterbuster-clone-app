@@ -107,12 +107,18 @@ export default function ProductHighlights({
 			description: "Who lives in this address?",
 		},
 	}[activeItem];
+
+  const isSearchActive = 
+  activeItem === "reverse-phone-lookup" || 
+  activeItem === "name-search" || 
+  activeItem === "address-search";
+
 	return (
 		<div className="flex justify-center ">
-			<div className="flex justify-center w-350 mx-5 sm:mx-10 lg:mx-15 bg-white rounded-tr-2xl ">
+			<div className={`flex justify-center w-350 mx-5 sm:mx-10 lg:mx-15 bg-white ${isSearchActive? "rounded-tl-2xl" : "rounded-tr-2xl"} `}>
 				<div className="w-full">
 					<div className="flex w-full px-6 justify-between space-x-4 mt-6">
-						{activeItem === "reverse-phone-lookup" || activeItem === "name-search" || activeItem === "address-search" ? (
+						{isSearchActive ? (
 							<>
 								<Link
 									href="/facetrace"
