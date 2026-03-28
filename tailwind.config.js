@@ -8,8 +8,8 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				condensed: ['"Roboto Condensed"', "sans-serif"],
-				expanded: ['"Bebas Neue"', "sans-serif"],
+				serif: ["Roboto Condensed", "sans-serif"],
+				expanded: ["Bebas Neue", "sans-serif"],
 			},
 		},
 	},

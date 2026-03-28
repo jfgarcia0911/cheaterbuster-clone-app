@@ -7,6 +7,7 @@ import SearchForm from "../sections/SearchForm";
 import { usePathname } from "next/navigation";
 import IncludedTools from "../sections/IncludedTools";
 import TestimonialSection from "../sections/TestimonialSection";
+import HomeProducts from "../sections/products/HomeProducts";
 // Define the allowed path values (same as your Path type)
 const pathMap: Record<
 	string,
@@ -33,6 +34,7 @@ export default function Hero() {
 			<SearchForm activeItem={current} />
 			<IncludedTools />
 			<TestimonialSection/>
+      <HomeProducts/>
 		</>
 	);
 }
